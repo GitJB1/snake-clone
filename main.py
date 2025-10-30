@@ -126,20 +126,21 @@ while gameloop:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.KEYDOWN and can_change_direction:
-            if event.key == pygame.K_UP:
-                snake_direction = changeDirection(Direction.UP, snake_direction)
-                can_change_direction = False
-            elif event.key == pygame.K_DOWN:
-                snake_direction = changeDirection(Direction.DOWN, snake_direction)
-                can_change_direction = False
-            elif event.key == pygame.K_RIGHT:
-                snake_direction = changeDirection(Direction.RIGHT, snake_direction)
-                can_change_direction = False
-            elif event.key == pygame.K_LEFT:
-                snake_direction = changeDirection(Direction.LEFT, snake_direction)
-                can_change_direction = False
-            elif event.key == pygame.K_r and game_over:
+        if event.type == pygame.KEYDOWN:
+            if can_change_direction:
+                if event.key == pygame.K_UP:
+                    snake_direction = changeDirection(Direction.UP, snake_direction)
+                    can_change_direction = False
+                elif event.key == pygame.K_DOWN:
+                    snake_direction = changeDirection(Direction.DOWN, snake_direction)
+                    can_change_direction = False
+                elif event.key == pygame.K_RIGHT:
+                    snake_direction = changeDirection(Direction.RIGHT, snake_direction)
+                    can_change_direction = False
+                elif event.key == pygame.K_LEFT:
+                    snake_direction = changeDirection(Direction.LEFT, snake_direction)
+                    can_change_direction = False
+            if event.key == pygame.K_r and game_over:
                 game_over = False
                 pygame.time.set_timer(snake_timer, snake_tick_speed)
                 snake = [Tile((COLLUMS/2, ROWS/2))]
